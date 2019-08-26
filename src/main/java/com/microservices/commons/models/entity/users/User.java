@@ -48,6 +48,11 @@ public class User implements Serializable {
 	
 	@Column(unique=true)
 	@NotEmpty(message="can't be empty")
+	@Size(min=1, max=20, message="must have between 1 and 20 characters")
+	private String username;
+	
+	@Column(unique=true)
+	@NotEmpty(message="can't be empty")
 	@Size(min=1, max=30, message="must have between 1 and 30 characters")
 	private String email;
 	
@@ -65,18 +70,20 @@ public class User implements Serializable {
 	@JoinColumn(name="rol_id")
 	private Rol rol;
 	
-	/*
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="user", cascade=CascadeType.ALL)
-    private List<History> history;
-	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="user", cascade=CascadeType.ALL)
-	private List<Likes> likes;
-	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="user", cascade=CascadeType.ALL)
-	private List<Favorite> favorities;
-	*/
 	public User() {
 		super();
+	}
+
+	public User(String name, String lastName, String username, String email, String password, Date createdAt, Config config, Rol rol) {
+		super();
+		this.name = name;
+		this.lastName = lastName;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.createdAt = createdAt;
+		this.config = config;
+		this.rol = rol;
 	}
 
 	// Set current date for createdAt field
@@ -148,21 +155,12 @@ public class User implements Serializable {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-	/*
-	public List<History> getHistory() {
-		return history;
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setHistory(List<History> history) {
-		this.history = history;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
-	public List<Likes> getLikes() {
-		return likes;
-	}
-
-	public void setLikes(List<Likes> likes) {
-		this.likes = likes;
-	}
-	*/
 }
