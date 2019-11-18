@@ -60,6 +60,8 @@ public class User implements Serializable {
 	@Size(min=1, max=100, message="must have between 1 and 100 characters")
 	private String password;
 	
+	private Boolean enabled;
+	
 	@Column(name="created_at")
 	private Date createdAt;
 	
