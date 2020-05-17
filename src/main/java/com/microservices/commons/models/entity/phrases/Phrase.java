@@ -21,7 +21,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="phrases")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -58,10 +64,6 @@ public class Phrase implements Serializable {
 	@Column(name="created_at")
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
-	
-	public Phrase() {
-		super();
-	}
 
 	public Phrase(Long id, String body, Long likesCounter, Type type, Author author, Image image){
 		this.id = id;
@@ -87,59 +89,16 @@ public class Phrase implements Serializable {
 		createdAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getBody() {
-		return body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
-	}
-
-	public Author getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
-
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-	public Image getImage() {
-		return image;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}
-
-	public Long getLikesCounter() {
-		return likesCounter;
-	}
-
-	public void setLikesCounter(Long likesCounter) {
-		this.likesCounter = likesCounter;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	@Override
+	public String toString() {
+		return "Phrase{" +
+				"id=" + id +
+				", body='" + body + '\'' +
+				", author=" + author +
+				", type=" + type +
+				", image=" + image +
+				", likesCounter=" + likesCounter +
+				", createdAt=" + createdAt +
+				'}';
 	}
 }

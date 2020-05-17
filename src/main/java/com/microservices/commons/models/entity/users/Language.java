@@ -17,7 +17,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="languages")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "config"})
@@ -39,10 +45,6 @@ public class Language implements Serializable {
 	
 	@Column(name="created_at")
 	private Date createdAt;
-	
-	public Language() {
-		super();
-	}
 
 	public Language(String name, Config config, Date createdAt) {
 		this.name = name;
@@ -56,35 +58,13 @@ public class Language implements Serializable {
 		createdAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Config getConfig() {
-		return config;
-	}
-
-	public void setConfig(Config config) {
-		this.config = config;
+	@Override
+	public String toString() {
+		return "Language{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", config=" + config +
+				", createdAt=" + createdAt +
+				'}';
 	}
 }

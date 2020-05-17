@@ -19,7 +19,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="roles")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "user"})
@@ -45,10 +51,6 @@ public class Rol implements Serializable {
 	
 	@Column(name="created_at")
 	private Date createdAt;
-	
-	public Rol() {
-		super();
-	}
 
 	public Rol(String name, String description, Date createdAt) {
 		this.name = name;
@@ -62,43 +64,14 @@ public class Rol implements Serializable {
 		createdAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public List<User> getUser() {
-		return user;
-	}
-
-	public void setUser(List<User> user) {
-		this.user = user;
+	@Override
+	public String toString() {
+		return "Rol{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", user=" + user +
+				", createdAt=" + createdAt +
+				'}';
 	}
 }

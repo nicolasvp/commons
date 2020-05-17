@@ -5,19 +5,21 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.microservices.commons.models.entity.users.User;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="likes")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -42,10 +44,6 @@ public class Like implements Serializable {
 	@Column(name="created_at")
 	private Date createdAt;
 
-	public Like() {
-		super();
-	}
-
 	public Like(Long userId, Long phraseId, Date createdAt) {
 		this.userId = userId;
 		this.phraseId = phraseId;
@@ -58,35 +56,13 @@ public class Like implements Serializable {
 		createdAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getUser() {
-		return userId;
-	}
-
-	public void setUser(Long userId) {
-		this.userId = userId;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Long getPhraseId() {
-		return phraseId;
-	}
-
-	public void setPhraseId(Long phraseId) {
-		this.phraseId = phraseId;
+	@Override
+	public String toString() {
+		return "Like{" +
+				"id=" + id +
+				", userId=" + userId +
+				", phraseId=" + phraseId +
+				", createdAt=" + createdAt +
+				'}';
 	}
 }

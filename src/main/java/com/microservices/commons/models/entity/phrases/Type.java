@@ -20,7 +20,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="types")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "phrases"})
@@ -43,10 +49,6 @@ public class Type implements Serializable {
 	@Column(name="created_at")
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
-	
-	public Type() {
-		super();
-	}
 
 	public Type(Long id, String name, Date createdAt) {
 		this.id = id;
@@ -65,35 +67,13 @@ public class Type implements Serializable {
 		createdAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Phrase> getPhrases() {
-		return phrases;
-	}
-
-	public void setPhrases(List<Phrase> phrases) {
-		this.phrases = phrases;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	@Override
+	public String toString() {
+		return "Type{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", phrases=" + phrases +
+				", createdAt=" + createdAt +
+				'}';
 	}
 }

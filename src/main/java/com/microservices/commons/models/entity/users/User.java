@@ -25,7 +25,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microservices.commons.models.entity.delivery.Favorite;
 import com.microservices.commons.models.entity.delivery.History;
 import com.microservices.commons.models.entity.delivery.Like;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="users")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "likes", "history", "favorities"})
@@ -71,10 +77,6 @@ public class User implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="rol_id")
 	private Rol rol;
-	
-	public User() {
-		super();
-	}
 
 	public User(String name, String lastName, String username, String email, String password, Date createdAt, Config config, Rol rol) {
 		super();
@@ -94,75 +96,9 @@ public class User implements Serializable {
 		createdAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Config getConfig() {
-		return config;
-	}
-
-	public void setConfig(Config config) {
-		this.config = config;
-	}
-	
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Rol getRol() {
-		return rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", lastName=" + lastName + ", username=" + username + ", email="
+				+ email + ", enabled=" + enabled + ", createdAt=" + createdAt + ", rol=" + rol + "]";
 	}
 }
