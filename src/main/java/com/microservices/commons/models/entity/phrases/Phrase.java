@@ -3,19 +3,7 @@ package com.microservices.commons.models.entity.phrases;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -43,18 +31,18 @@ public class Phrase implements Serializable {
 	@Size(min=1, max=200, message="must have between 1 and 200 characters")
 	private String body;
 	
-	@NotNull(message="can't be empty")
+	//@NotNull(message="can't be empty")
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="author_id")
 	private Author author;
 	
-	@NotNull(message="can't be empty")
+	//@NotNull(message="can't be empty")
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="type_id")
 	private Type type;
 	
 	@NotNull(message="can't be empty")
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL)
 	@JoinColumn(name="image_id", referencedColumnName="id")
 	private Image image;
 	
