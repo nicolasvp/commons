@@ -42,43 +42,40 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=50, message="must have between 1 and 50 characters")
+
+	@NotEmpty(message="The field name must not be empty")
+	@Size(min=1, max=50, message="The field name must have between {min} and {max} characters")
 	private String name;
 	
 	@Column(name="last_name")
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=50, message="must have between 1 and 50 characters")
+	@NotEmpty(message="The field last name must not be empty")
+	@Size(min=1, max=50, message="The field last name must have between {min} and {max} characters")
 	private String lastName;
 	
 	@Column(unique=true)
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=20, message="must have between 1 and 20 characters")
+	@NotEmpty(message="The field username must not be empty")
+	@Size(min=1, max=20, message="The field username must have between {min} and {max} characters")
 	private String username;
 	
 	@Column(unique=true)
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=30, message="must have between 1 and 30 characters")
+	@NotEmpty(message="The field email must not be empty")
+	@Size(min=1, max=30, message="The field email must have between {min} and {max} characters")
 	private String email;
-	
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=100, message="must have between 1 and 100 characters")
+
+	@NotEmpty(message="The field password must not be empty")
+	@Size(min=1, max=100, message="The field password must have between {min} and {max} characters")
 	private String password;
 	
 	private Boolean enabled;
 	
 	@Column(name="created_at")
 	private Date createdAt;
-	
-	@OneToOne(mappedBy="user", fetch=FetchType.LAZY)
-    private Config config;
     
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="rol_id")
 	private Rol rol;
 
-	public User(String name, String lastName, String username, String email, String password, Date createdAt, Config config, Rol rol) {
+	public User(String name, String lastName, String username, String email, String password, Date createdAt, Rol rol) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
@@ -86,7 +83,6 @@ public class User implements Serializable {
 		this.email = email;
 		this.password = password;
 		this.createdAt = createdAt;
-		this.config = config;
 		this.rol = rol;
 	}
 

@@ -39,8 +39,8 @@ public class Type implements Serializable {
 	private Long id;
 	
 	@Column(unique=true)
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=20, message="must have between 1 and 20 characters")
+	@NotEmpty(message="The field name must not be empty")
+	@Size(min=1, max=20, message="The field name must have between {min} and {max} characters")
 	private String name;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="type", cascade=CascadeType.ALL)

@@ -38,12 +38,12 @@ public class Rol implements Serializable {
 	private Long id;
 	
 	@Column(unique=true)
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=20, message="must have between 1 and 100 characters")
+	@NotEmpty(message="The field name must not be empty")
+	@Size(min=1, max=20, message="The field name must have between {min} and {max} characters")
 	private String name;
-	
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=300, message="must have between 1 and 300 characters")
+
+	@NotEmpty(message="The field description must not be empty")
+	@Size(min=1, max=50, message="The field description must have between {min} and {max} characters")
 	private String description;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="rol", cascade=CascadeType.ALL)
@@ -56,6 +56,11 @@ public class Rol implements Serializable {
 		this.name = name;
 		this.description = description;
 		this.createdAt = createdAt;
+	}
+
+	public Rol(String name, String description) {
+		this.name = name;
+		this.description = description;
 	}
 
 	// Set current date for createdAt field

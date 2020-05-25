@@ -27,22 +27,22 @@ public class Phrase implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=200, message="must have between 1 and 200 characters")
+	@NotEmpty(message="The field body must not be empty")
+	@Size(min=1, max=200, message="The field body must have between {min} and {max} characters")
 	private String body;
 	
 	//@NotNull(message="can't be empty")
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="author_id")
+	@JoinColumn(name="author_id", referencedColumnName = "id")
 	private Author author;
 	
 	//@NotNull(message="can't be empty")
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="type_id")
+	@JoinColumn(name="type_id", referencedColumnName = "id")
 	private Type type;
 	
-	@NotNull(message="can't be empty")
-	@OneToOne(fetch=FetchType.LAZY, cascade= CascadeType.ALL)
+	//@NotNull(message="can't be empty")
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="image_id", referencedColumnName="id")
 	private Image image;
 	

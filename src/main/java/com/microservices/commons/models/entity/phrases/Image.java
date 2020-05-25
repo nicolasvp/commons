@@ -2,18 +2,9 @@ package com.microservices.commons.models.entity.phrases;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -27,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name="images")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "phrase"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "phrases"})
 public class Image implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,16 +28,22 @@ public class Image implements Serializable {
 	private Long id;
 	
 	@Column(unique=true)
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=20, message="must have between 1 and 20 characters")
+	@NotEmpty(message="The field name must not be empty")
+	@Size(min=1, max=20, message="The field name must have between {min} and {max} characters")
 	private String name;
-	
-    @OneToOne(fetch=FetchType.LAZY, mappedBy = "image")
-    private Phrase phrase;
+
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="image", cascade=CascadeType.ALL)
+	private List<Phrase> phrases;
     
 	@Column(name="created_at")
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
+
+	public Image(Long id, String name, Date createdAt) {
+		this.id = id;
+		this.name = name;
+		this.createdAt = createdAt;
+	}
 
 	public Image(String name, Date createdAt) {
 		this.name = name;
@@ -64,7 +61,7 @@ public class Image implements Serializable {
 		return "Image{" +
 				"id=" + id +
 				", name='" + name + '\'' +
-				", phrase=" + phrase +
+				", phrase=" + phrases +
 				", createdAt=" + createdAt +
 				'}';
 	}

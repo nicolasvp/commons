@@ -39,8 +39,8 @@ public class Author implements Serializable {
 	private Long id;
 	
 	@Column(unique=true)
-	@NotEmpty(message="can't be empty")
-	@Size(min=1, max=100, message="must have between 1 and 100 characters")
+	@NotEmpty(message="The field name must not be empty")
+	@Size(min=1, max=100, message="The field name must have between {min} and {max} characters")
 	private String name;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="author", cascade=CascadeType.ALL)

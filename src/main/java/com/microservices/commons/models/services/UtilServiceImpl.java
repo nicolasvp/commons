@@ -12,7 +12,7 @@ public class UtilServiceImpl implements IUtilService {
     public List<String> listErrors(BindingResult result) {
         return result.getFieldErrors()
                     .stream()
-                    .map(err -> "El campo " + err.getField() + " " + err.getDefaultMessage())
+                    .map(err -> err.getDefaultMessage())
                     .collect(Collectors.toList());
     }
 }
