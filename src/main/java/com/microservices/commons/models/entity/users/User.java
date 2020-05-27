@@ -65,7 +65,11 @@ public class User implements Serializable {
 	@NotEmpty(message="The field password must not be empty")
 	@Size(min=1, max=100, message="The field password must have between {min} and {max} characters")
 	private String password;
-	
+
+	@Column(name="phrase_type_id", columnDefinition = "integer default 0")
+	private Integer phraseType;
+
+	@Column(columnDefinition = "boolean default true")
 	private Boolean enabled;
 	
 	@Column(name="created_at")
@@ -94,7 +98,17 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", lastName=" + lastName + ", username=" + username + ", email="
-				+ email + ", enabled=" + enabled + ", createdAt=" + createdAt + ", rol=" + rol + "]";
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", lastName='" + lastName + '\'' +
+				", username='" + username + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", phraseType=" + phraseType +
+				", enabled=" + enabled +
+				", createdAt=" + createdAt +
+				", rol=" + rol +
+				'}';
 	}
 }

@@ -35,11 +35,11 @@ public class History implements Serializable {
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@JoinColumn(name="user_id")
 	@Column(name="user_id")
-	@NotNull(message="can't be empty")
+	@NotNull(message="The field user must not be null")
 	private Long userId;
 
 	@Column(name="phrase_id")
-	@NotNull(message="can't be empty")
+	@NotNull(message="The field phrase must not be null")
 	private Long phraseId;
 	
 	@Column(name="created_at")

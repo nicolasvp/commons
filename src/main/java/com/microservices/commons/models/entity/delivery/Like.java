@@ -34,10 +34,10 @@ public class Like implements Serializable {
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@JoinColumn(name="user_id")
 	@Column(name="user_id")
-	@NotNull(message="can't be empty")
+	@NotNull(message="The field user must not be null")
 	private Long userId;
 	
-	@NotNull(message="can't be empty")
+	@NotNull(message="The field phrase must not be null")
 	@Column(name="phrase_id")
 	private Long phraseId;
 	
