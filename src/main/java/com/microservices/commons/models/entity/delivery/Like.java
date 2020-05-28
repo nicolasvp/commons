@@ -16,20 +16,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="likes")
+@Document(collection = "likes")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Like implements Serializable {
+public class Like {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String id;
 	
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@JoinColumn(name="user_id")

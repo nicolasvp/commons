@@ -17,20 +17,21 @@ import com.microservices.commons.models.entity.users.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="favorities")
+@Document(collection = "favorities")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Favorite implements Serializable {
+public class Favorite {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String id;
 
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@JoinColumn(name="user_id")

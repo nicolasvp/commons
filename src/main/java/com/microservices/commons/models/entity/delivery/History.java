@@ -17,20 +17,18 @@ import com.microservices.commons.models.entity.users.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="history")
+@Document(collection = "history")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class History implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class History {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 
 	//@ManyToOne(fetch=FetchType.LAZY)
 	//@JoinColumn(name="user_id")
